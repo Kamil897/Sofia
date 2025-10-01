@@ -1,0 +1,31 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="reviewPage-container">
+    <h2 class="reviewPage-title">Отзывы клиентов</h2>
+    {% if reviews %}
+        <div class="reviewPage-list">
+            {% for review in reviews %}
+                <div class="reviewPage-card">
+                    <h3 class="reviewPage-author">{{ review.customer_name }}</h3>
+                    <div class="reviewPage-rating">
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= review.rating %}
+                                ★
+                            {% else %}
+                                ☆
+                            {% endif %}
+                        {% endfor %}
+                        <span>({{ review.rating }}/5)</span>
+                    </div>
+                    <p class="reviewPage-text">{{ review.text|truncatewords:20 }}</p>
+                    <p class="reviewPage-date">{{ review.created_at|date:"d.m.Y H:i" }}</p>
+                    <a href="{% url 'review_detail' review.pk %}" class="reviewPage-link">Читать полностью</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Отзывов пока нет</p>
+    {% endif %}
+</div>
+{% endblock %}

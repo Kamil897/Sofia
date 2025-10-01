@@ -1,0 +1,47 @@
+{% load static %}
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Bla Bla Bla Coffee</title>
+  <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h1 class="logo"><a href="/">Bla Bla Bla Coffee</a></h1>
+      <nav class="nav">
+        <a href="{% url 'menu' %}">Меню</a>
+        <a href="{% url 'cart' %}">Корзина</a>
+        <a href="{% url 'promo_list' %}">Промо-коды</a>
+        <a href="{% url 'news_list' %}">Новости</a>
+        <a href="{% url 'review_list' %}">Отзывы</a>
+        <a href="{% url 'recommendation_list' %}">Рекомендации</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <h4>Bla Bla Bla Coffee</h4>
+        <p>Ваше уютное место для кофе и выпечки каждый день.</p>
+      </div>
+      <div class="footer-right">
+        <ul>
+          <li><a href="{% url 'menu' %}">Меню</a></li>
+          <li><a href="#">О нас</a></li>
+          <li><a href="#">Контакты</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Bla Bla Bla Coffee. Все права защищены.</p>
+    </div>
+  </footer>
+</body>
+</html>

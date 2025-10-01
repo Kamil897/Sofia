@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="recPage-container">
+    <h2 class="recPage-title">Рекомендации</h2>
+    {% if recommendations %}
+        <div class="recPage-list">
+            {% for rec in recommendations %}
+                <div class="recPage-card">
+                    <h3 class="recPage-product"> Любите: {{ rec.product.name }}</h3>
+                    <p class="recPage-subtitle">Рекомендуем также:</p>
+                    <h4 class="recPage-recommend">{{ rec.recommended_product.name }}</h4>
+                    <p class="recPage-desc">{{ rec.recommended_product.description|truncatewords:15 }}</p>
+                    <p class="recPage-price">Цена: <span>{{ rec.recommended_product.price }} ₽</span></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="recPage-empty">Рекомендаций пока нет</p>
+    {% endif %}
+</div>
+{% endblock %}

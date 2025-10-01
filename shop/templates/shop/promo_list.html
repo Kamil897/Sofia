@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="promoPage-container">
+    <h2 class="promoPage-title">Промо-акции</h2>
+    {% if promos %}
+        <div class="promoPage-list">
+            {% for promo in promos %}
+                <div class="promoPage-card">
+                    <h3 class="promoPage-card-title">
+                        <a href="{% url 'promo_detail' promo.pk %}">{{ promo.name }}</a>
+                    </h3>
+                    <p class="promoPage-card-desc">{{ promo.description|truncatewords:20 }}</p>
+                    <p class="promoPage-discount"><strong>Скидка: {{ promo.discount }}%</strong></p>
+                    <p class="promoPage-date">Действует до: {{ promo.end_date|date:"d.m.Y" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="promoPage-empty">Активных промо-акций нет</p>
+    {% endif %}
+</div>
+{% endblock %}

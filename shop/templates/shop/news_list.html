@@ -1,0 +1,20 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Новости</h2>
+    {% if news %}
+        <div class="news-list">
+            {% for news_item in news %}
+                <div class="news-item">
+                    <h3><a href="{% url 'news_detail' news_item.pk %}">{{ news_item.title }}</a></h3>
+                    <p>{{ news_item.text|truncatewords:30 }}</p>
+                    <p class="news-date">{{ news_item.published_at|date:"d.m.Y H:i" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Новостей пока нет</p>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+<div class="promoPage-container">
+    <h2 class="promoPage-title">{{ promo.name }}</h2>
+    <div class="promoPage-detail">
+        <p><strong>Описание:</strong></p>
+        <p>{{ promo.description }}</p>
+        <p><strong>Скидка:</strong> {{ promo.discount }}%</p>
+        <p><strong>Начало акции:</strong> {{ promo.start_date|date:"d.m.Y H:i" }}</p>
+        <p><strong>Окончание акции:</strong> {{ promo.end_date|date:"d.m.Y H:i" }}</p>
+    </div>
+    <a href="{% url 'promo_list' %}" class="promoPage-back">← Назад к списку промо-акций</a>
+</div>
+{% endblock %}

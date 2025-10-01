@@ -1,0 +1,27 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div class="cart-container">
+  <h2 class="cart-title">🛒 Корзина</h2>
+
+  {% if items %}
+    <ul class="cart-list">
+      {% for item in items %}
+        <li class="cart-item">
+          <div class="cart-item-info">
+            <span class="cart-item-name">{{ item.product.name }}</span>
+            <span class="cart-item-quantity">× {{ item.quantity }}</span>
+          </div>
+          <span class="cart-item-subtotal">{{ item.subtotal }} ₽</span>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="cart-summary">
+      <p class="cart-total">Итого: <strong>{{ total }} ₽</strong></p>
+      <a href="{% url 'order' %}" class="checkout-button">Оформить заказ</a>
+    </div>
+  {% else %}
+    <p class="cart-empty">Корзина пуста ☕</p>
+  {% endif %}
+</div>
+{% endblock %}

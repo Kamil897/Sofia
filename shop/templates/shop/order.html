@@ -1,0 +1,19 @@
+{% extends "shop/base.html" %}
+{% block content %}
+<div class="order-container">
+  <h2 class="order-title">📦 Оформление заказа</h2>
+
+  {% if success %}
+    <div class="order-success">
+      <p>✅ Спасибо за заказ!</p>
+      <p>Ваш номер: <strong>{{ order.id }}</strong></p>
+    </div>
+  {% else %}
+    <form method="post" class="order-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="order-button">Отправить заказ</button>
+    </form>
+  {% endif %}
+</div>
+{% endblock %}
